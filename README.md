@@ -23,13 +23,9 @@ To reproduce the final reported results and plots in the paper follow the notebo
 This publication introduces Anisotropic Fourier Feature Positional Encodings (AFPE). The implementation of this positional encoding as well as all other positional encodings can be found in the [positional_encodings.py](posenc/nets/positional_encodings.py) file.
 
 ## Pretrained models
-Pretrained models can be found in the `models` folder. Due to the large size of these folders they are 7z compressed. To extract the models use the following command:
-```bash
-7z x models/echonetreg.7z
-7z x models/chestxmulti.7z
-```
+Pretrained models can be downloaded from [https://huggingface.co/afpe/afpe](https://huggingface.co/afpe/afpe).
 
-## Training my own model
+## Training a model from scratch
 To train a model like in the this publication you need to:
 1. Download the datasets
 2. Preprocess the datasets
