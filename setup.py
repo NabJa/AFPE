@@ -1,14 +1,12 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name='PosEnc',
     version='0.1',
     packages=find_packages(),
-    description='Positional encoding exploration for medical images.',
-    author='Nabil Jabareen',
-    author_email='nabil.jabareen@charite.de',
-    url='https://gitlab.com/lukassen/posenc',
-    install_requires=[
-        # list of packages your project depends on
-    ],
+    description='Principled Positional Encodings for Medical Imaging',
+    author='Anonymized Authors',
+    author_email='email@anonymized.com',
+    url='https://anonymous.4open.science/r/AFPE-0D0E/README.md',
+    install_requires=[],
 )
