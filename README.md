@@ -12,12 +12,24 @@ conda activate posenc # Activates the conda environment
 python setup.py install # Installs the package
 ```
 
-## Reproducing the results
+## Results
+
+|           |   ChestX              |   EchoNet             |
+|:---------:|:---------------------:|:---------------------:|
+| **Metric**| **AUPRC $\uparrow$**  | **$R^2 \uparrow$**    |
+| None      | 0.146$\pm$0.002       | 0.284$\pm$0.035       |
+| Learnable | 0.156$\pm$0.002       | 0.333$\pm$0.030       |
+| SPE       | **0.186$\pm$0.003**   | 0.527$\pm$0.030       |
+| FPE       | 0.184$\pm$0.003       | _0.548$\pm$0.028_     |
+| LFPE      | 0.179$\pm$0.003       | 0.523$\pm$0.030       |
+| AFPE      | _0.185$\pm$0.004_     | **0.621$\pm$0.024**   |
+
+### Generating the results
 To reproduce the final reported results and plots in the paper follow the notebooks in the `notebooks` folder. The notebooks are named according to the experiments they reproduce.
 
 **Notebooks:**
-- [ChestX](notebooks/ChestX.ipynb)
-- [EchoNet-Dynamic](notebooks/EchoNet-Dynamic.ipynb)
+- [ChestX results](notebooks/ChestX.ipynb)
+- [EchoNet-Dynamic results](notebooks/EchoNet-Dynamic.ipynb)
 - [Figures](notebooks/figures.ipynb)
 
 This publication introduces Anisotropic Fourier Feature Positional Encodings (AFPE). The implementation of this positional encoding as well as all other positional encodings can be found in the [positional_encodings.py](posenc/nets/positional_encodings.py) file.
