@@ -7,9 +7,9 @@ To address these complications, we propose Anisotropic Fourier Feature Positiona
 ## Installation
 To run the code in this repo create a conda environment and install the dependencies using the following commands:
 ```bash
-conda env create -f environment.yml # Creates conda environment
-conda activate posenc # Activates the conda environment
-python setup.py install # Installs the package
+conda env create -f environment.yml # Creates conda environment named 'posenc'
+conda activate posenc # Activates the conda posenc environment
+python setup.py install # Installs this package
 ```
 
 ## Results
@@ -17,25 +17,42 @@ python setup.py install # Installs the package
 |           |   ChestX              |   EchoNet             |
 |:---------:|:---------------------:|:---------------------:|
 | **Metric**| **AUPRC $\uparrow$**  | **$R^2 \uparrow$**    |
-| None      | 0.146$\pm$0.002       | 0.284$\pm$0.035       |
-| Learnable | 0.156$\pm$0.002       | 0.333$\pm$0.030       |
-| SPE       | **0.186$\pm$0.003**   | 0.527$\pm$0.030       |
-| FPE       | 0.184$\pm$0.003       | _0.548$\pm$0.028_     |
-| LFPE      | 0.179$\pm$0.003       | 0.523$\pm$0.030       |
+| None      | 0.146$\pm$0.002       | 0.283$\pm$0.034       |
+| Learnable | 0.156$\pm$0.002       | 0.334$\pm$0.029       |
+| SPE       | **0.186$\pm$0.003**   | 0.527$\pm$0.028       |
+| FPE       | 0.184$\pm$0.003       | _0.547$\pm$0.027_     |
+| LFPE      | 0.179$\pm$0.003       | 0.522$\pm$0.029       |
 | AFPE      | _0.185$\pm$0.004_     | **0.621$\pm$0.024**   |
 
 ### Generating the results
-To reproduce the final reported results and plots in the paper follow the notebooks in the `notebooks` folder. The notebooks are named according to the experiments they reproduce.
+**Minimal example**
+We provide two ways to reproduce the results in the paper. For a minimal example to generate the results in the table above, run:
+```bash
+python ./generate_results.py
+```
+This script only requires torch, numpy, pandas and torchmetrics (1.5.2) to be installed!
 
-**Notebooks:**
+**More results exploration**
+For more in depth exploration of the results and plots in the paper, follow the notebooks in the `notebooks` folder:
 - [ChestX results](notebooks/ChestX.ipynb)
 - [EchoNet-Dynamic results](notebooks/EchoNet-Dynamic.ipynb)
 - [Figures](notebooks/figures.ipynb)
 
+**Implementation of proposed method**
 This publication introduces Anisotropic Fourier Feature Positional Encodings (AFPE). The implementation of this positional encoding as well as all other positional encodings can be found in the [positional_encodings.py](posenc/nets/positional_encodings.py) file.
 
 ## Pretrained models
 Pretrained models can be downloaded from [https://huggingface.co/afpe/afpe](https://huggingface.co/afpe/afpe).
+To load a pretrained model use the following code:
+```python
+# Loading model for EchoNet-Dynamic regression task
+from posenc.modules.video_regression import VideoViTModule
+model = VideoViTModule.load_from_checkpoint(model_path, map_location=torch.device(DEVICE))
+
+# Loading model for ChestX multi-label classification task
+from posenc.modules.vision_transformer import ViTMultiClsModule
+model = ViTMultiClsModule.load_from_checkpoint(model_path, map_location=torch.device(DEVICE))
+```
 
 ## Training a model from scratch
 To train a model like in the this publication you need to:
