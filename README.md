@@ -17,28 +17,28 @@ python setup.py install # Installs this package
 |           |   ChestX              |   EchoNet             |
 |:---------:|:---------------------:|:---------------------:|
 | **Metric**| **AUPRC $\uparrow$**  | **$R^2 \uparrow$**    |
-| None      | 0.146$\pm$0.002       | 0.283$\pm$0.034       |
-| Learnable | 0.156$\pm$0.002       | 0.334$\pm$0.029       |
-| SPE       | **0.186$\pm$0.003**   | 0.527$\pm$0.028       |
-| FPE       | 0.184$\pm$0.003       | _0.547$\pm$0.027_     |
-| LFPE      | 0.179$\pm$0.003       | 0.522$\pm$0.029       |
-| AFPE      | _0.185$\pm$0.004_     | **0.621$\pm$0.024**   |
+| None      | 0.146$ \pm $0.002       | 0.283$ \pm $0.034       |
+| Learnable | 0.156$ \pm $0.002       | 0.334$ \pm $0.029       |
+| SPE       | **0.186$ \pm $0.003**   | 0.527$ \pm $0.028       |
+| FPE       | 0.184$ \pm $0.003       | _0.547$ \pm $0.027_     |
+| LFPE      | 0.179$ \pm $0.003       | 0.522$ \pm $0.029       |
+| AFPE      | _0.185$ \pm $0.004_     | **0.621$ \pm $0.024**   |
 
 ### Generating the results
-**Minimal example**
+**Minimal example**  
 We provide two ways to reproduce the results in the paper. For a minimal example to generate the results in the table above, run:
 ```bash
 python ./generate_results.py
 ```
 This script only requires torch, numpy, pandas and torchmetrics (1.5.2) to be installed!
 
-**More results exploration**
+**More results exploration**  
 For more in depth exploration of the results and plots in the paper, follow the notebooks in the `notebooks` folder:
 - [ChestX results](notebooks/ChestX.ipynb)
 - [EchoNet-Dynamic results](notebooks/EchoNet-Dynamic.ipynb)
 - [Figures](notebooks/figures.ipynb)
 
-**Implementation of proposed method**
+**Implementation of proposed method**  
 This publication introduces Anisotropic Fourier Feature Positional Encodings (AFPE). The implementation of this positional encoding as well as all other positional encodings can be found in the [positional_encodings.py](posenc/nets/positional_encodings.py) file.
 
 ## Pretrained models
