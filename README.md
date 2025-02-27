@@ -25,7 +25,10 @@ python setup.py install # Installs this package
 | AFPE      | _0.185&#x00b1;0.004_     | **0.621&#x00b1;0.024**   |
 
 ### Generating the results
+
 **Minimal example**  
+**\*\*Important\*\*: Berfore you start**, make sure ./results/chestx_predictions.7z is unpacked and you have the ./results/chestx_predictions.csv file.  
+
 We provide two ways to reproduce the results in the paper. For a minimal example to generate the results in the table above, run:
 ```bash
 python ./generate_results.py

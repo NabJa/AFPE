@@ -35,7 +35,7 @@ def generate_chestx_results(result_dir: Path, chest_results_name = "chestx_predi
     df = pd.read_csv(result_dir / chest_results_name, index_col=0)
 
     metric_collection = MetricCollection({
-        "mAP":   BootStrapper(MultilabelAveragePrecision(num_labels=20), num_bootstraps=100), # Suited metric!
+        "AUPRC":   BootStrapper(MultilabelAveragePrecision(num_labels=20), num_bootstraps=100), # Suited metric!
         "F1":    BootStrapper(MultilabelF1Score(num_labels=20), num_bootstraps=3), # Not recommended, because of single threshold!
         "AUROC": BootStrapper(MultilabelAUROC(num_labels=20), num_bootstraps=3) # Not recommended, because of class imbalance!
     })
@@ -63,7 +63,7 @@ def generate_chestx_results(result_dir: Path, chest_results_name = "chestx_predi
 
     results = pd.DataFrame(results)
 
-    best_models = results[results.metric == "mAP"].sort_values("mean", ascending=False).reset_index(drop=True)
+    best_models = results[results.metric == "AUPRC"].sort_values("mean", ascending=False).reset_index(drop=True)
     
     return best_models
 
