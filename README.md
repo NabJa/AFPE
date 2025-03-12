@@ -41,6 +41,9 @@ For more in depth exploration of the results and plots in the paper, follow the 
 - [EchoNet-Dynamic results](notebooks/EchoNet-Dynamic.ipynb)
 - [Figures](notebooks/figures.ipynb)
 
+**Interactive AFPE hyperparamter exploration**
+- [interactive_plot/interactive_plot.html](interactive_plot/interactive_plot.html). (If does not show in the browser, download the html and open in a browser.)
+
 **Implementation of proposed method**  
 This publication introduces Anisotropic Fourier Feature Positional Encodings (AFPE). The implementation of this positional encoding as well as all other positional encodings can be found in the [positional_encodings.py](posenc/nets/positional_encodings.py) file.
 
