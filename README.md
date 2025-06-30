@@ -1,8 +1,7 @@
-# Principled Positional Encodings for Medical Imaging
+# Anisotropic Fourier Features for Positional Encoding in Medical Imaging
 
 ## Abstract
-The adoption of Transformer-based architectures in the medical domain is growing rapidly. However, their suitability for medical tasks depends on architectural design choices, particularly the inductive biases they impose. In this study, we critically examine the role of Positional Encodings (PEs), arguing that commonly used approaches may be suboptimal for medical imaging. While Sinusoidal Positional Encodings (SPEs) and learned PEs have been widely adopted from Natural Language processing to computer vision, their capability to effectively preserve spatial structures in medical data has not been sufficiently studied. Fourier Positional Encodings (FPEs) have been proposed to better align with the spatial nature of images. However, in medical imaging conserved spatial structures like organs, high dimensionality, and anisotropy further complicate the demands on PEs.
-To address these complications, we propose Anisotropic Fourier Feature Positional Encoding (AFPE), a generalization of FPE that is capable of incorporating anisotropic, class-specific and domain-specific spatial dependencies. We systematically benchmark AFPE against commonly used PEs on multi-label classification in chest x-rays and ejection fraction regression in echocardiography. Our results demonstrate that choosing the correct PE can significantly improve the models performance. We show that the optimal PE depends on the domain of interest and the anisotropy of the data. Finally, our proposed AFPE significantly outperforms state-of-the-art PEs in ejection fraction regression. We conclude that in anisotropic medical images and videos it is of paramount importance to choose an anisotropic positional encoding that fits the data.
+*The adoption of Transformer-based architectures in the medical domain is growing rapidly. In medical imaging, the analysis of complex shapes - such as organs, tissues, or other anatomical structures - combined with the often anisotropic nature of high-dimensional images complicates these adaptations. In this study, we critically examine the role of Positional Encodings (PEs), arguing that commonly used approaches may be suboptimal for the specific challenges of medical imaging. Sinusoidal Positional Encodings (SPEs) have proven effective in vision tasks, but they struggle to preserve Euclidean distances in higher-dimensional spaces. Isotropic Fourier Feature Positional Encodings (IFPEs) have been proposed to better preserve Euclidean distances, but they lack the ability to account for anisotropy in images. To address these limitations, we propose Anisotropic Fourier Feature Positional Encoding (AFPE), a generalization of IFPE that incorporates anisotropic, class-specific, and domain-specific spatial dependencies. We systematically benchmark AFPE against commonly used PEs on multi-label classification in chest X-rays, organ classification in CT images, and ejection fraction regression in echocardiography. Our results demonstrate that choosing the correct PE can significantly improve model performance. We show that the optimal PE depends on the shape of the structure of interest and the anisotropy of the data. Finally, our proposed AFPE significantly outperforms state-of-the-art PEs in all tested anisotropic settings. We conclude that, in anisotropic medical images and videos, it is of paramount importance to choose an anisotropic PE that fits the data and the shape of interest.*
 
 ## Installation
 To run the code in this repo create a conda environment and install the dependencies using the following commands:
@@ -11,18 +10,6 @@ conda env create -f environment.yml # Creates conda environment named 'posenc'
 conda activate posenc # Activates the conda posenc environment
 python setup.py install # Installs this package
 ```
-
-## Results
-
-|           |   ChestX              |   EchoNet             |
-|:---------:|:---------------------:|:---------------------:|
-| **Metric**| **AUPRC $\uparrow$**  | **$R^2 \uparrow$**    |
-| None      | 0.146&#x00b1;0.002       | 0.283&#x00b1;0.034       |
-| Learnable | 0.156&#x00b1;0.002       | 0.334&#x00b1;0.029       |
-| SPE       | **0.186&#x00b1;0.003**   | 0.527&#x00b1;0.028       |
-| FPE       | 0.184&#x00b1;0.003       | _0.547&#x00b1;0.027_     |
-| LFPE      | 0.179&#x00b1;0.003       | 0.522&#x00b1;0.029       |
-| AFPE      | _0.185&#x00b1;0.004_     | **0.621&#x00b1;0.024**   |
 
 ### Generating the results
 
@@ -37,9 +24,11 @@ This script only requires torch, numpy, pandas and torchmetrics (1.5.2) to be in
 
 **More results exploration**  
 For more in depth exploration of the results and plots in the paper, follow the notebooks in the `notebooks` folder:
-- [ChestX results](notebooks/ChestX.ipynb)
-- [EchoNet-Dynamic results](notebooks/EchoNet-Dynamic.ipynb)
 - [Figures](notebooks/figures.ipynb)
+- [ChestX results](notebooks/ChestX.ipynb)
+- [OrganMNIST3D results](notebooks/OrganMNIST3D.ipynb)
+- [EchoNet-Dynamic results](notebooks/echonet.ipynb)
+- [Feret diameter prediction results](notebooks/feret_prediction.ipynb)
 
 **Interactive AFPE hyperparamter exploration**
 - [interactive_plot/interactive_plot.html](interactive_plot/interactive_plot.html). (If does not show in the browser, download the html and open in a browser.)
@@ -70,6 +59,7 @@ To train a model like in the this publication you need to:
 
 The datasets used in this study are publicly available and can be accessed through the following links: 
 - NIH Chest X-ray:  https://cloud.google.com/healthcare-api/docs/resources/public-datasets/nih-chest
+- MedMNIST:  https://medmnist.com/
 - EchoNet-Dynamic:  https://echonet.github.io/dynamic/index.html
 
 **Important:** After downloading the datasets change the *ROOT* variable in [posenc/datasets/chestx.py](posenc/datasets/chestx.py) and [posenc/datasets/echonet.py](posenc/datasets/echonet.py) to the path where the datasets are stored!

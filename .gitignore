@@ -7,3 +7,6 @@ PosEnc.egg-info
 logs
 wandb
 *.ckpt
+
+# File to large. Use 7z zipped instead
+results/chestx_predictions.csv
