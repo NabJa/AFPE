@@ -1,7 +1,9 @@
 # Anisotropic Fourier Features for Positional Encoding in Medical Imaging
 
-Anisotropic Fourier Feature Positional Encoding (AFPE) is a generalization of Isotropic Fourier Feature Positional Encoding that incorporates anisotropic, class-specific, and domain-specific spatial dependencies.
-**AFPE has one hyperparameter for every dimension. Explore their effect [here](https://nabja.github.io/afpe/)!**
+Anisotropic Fourier Feature Positional Encoding (AFPE) is a generalization of Isotropic Fourier Feature Positional Encoding. Unlike isotropic encodings, AFPE captures anisotropic, class-specific, and domain-aware spatial dependencies, making it well-suited for complex medical and scientific imaging tasks.
+AFPE introduces one intuitive hyperparameter per spatial or temporal dimension, allowing fine-grained control over how positional information is encoded.
+
+👉 Get a better feel for how AFPE works in practice by exploring our **[interactive visualization](https://nabja.github.io/afpe/)!**
 
 ## Method Overview
 ![figure](./results/iso_pe_comparison_2d_chestx.png)
